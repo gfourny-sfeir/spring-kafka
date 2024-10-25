@@ -1,0 +1,72 @@
+{
+  "doc": "Diffusion d'un évènement concernant un abonné",
+  "fields": [
+    {
+      "name": "abonneEvent",
+      "type": {
+        "name": "AbonneEvent",
+        "doc": "Évènement concernant un abonné",
+        "type": "record",
+        "fields": [
+          {
+            "doc": "Id de l'abonné",
+            "name": "id",
+            "type": [
+              "null",
+              {
+                "type": "string",
+                "logicalType": "uuid"
+              }
+            ],
+            "default": null
+          },
+          {
+            "doc": "Prénom de l'abonné",
+            "name": "prenom",
+            "type": "string"
+          },
+          {
+            "doc": "Nom de l'abonné",
+            "name": "nom",
+            "type": "string"
+          },
+          {
+            "doc": "Adresse de l'abonné",
+            "name": "adresse",
+            "type": "string"
+          },
+          {
+            "default": null,
+            "doc": "Statut de l'abonné",
+            "name": "statut",
+            "type": [
+              "null",
+              {
+                "default": "INACTIF",
+                "name": "Statut",
+                "symbols": [
+                  "INACTIF",
+                  "ACTIF",
+                  "SUSPENDU",
+                  "RESILIE"
+                ],
+                "type": "enum"
+              }
+            ]
+          },
+          {
+            "doc": "Date de création de l'abonné",
+            "name": "dateCreation",
+            "type": {
+              "type": "long",
+              "logicalType": "timestamp-millis"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "name": "AbonneMessage",
+  "namespace": "fr.example.kafka.schema.abonne",
+  "type": "record"
+}
