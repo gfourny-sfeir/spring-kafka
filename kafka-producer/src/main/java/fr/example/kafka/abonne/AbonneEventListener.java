@@ -1,9 +1,11 @@
 package fr.example.kafka.abonne;
 
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.context.event.EventListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
+import fr.example.kafka.abonne.config.AbonneProperties;
 import fr.example.kafka.abonne.mapper.AbonneMapper;
 import fr.example.kafka.schema.abonne.AbonneMessage;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ class AbonneEventListener {
 
     private final AbonneMapper abonneMapper;
     private final KafkaTemplate<String, AbonneMessage> kafkaTemplate;
+    private final AbonneProperties abonneProperties;
 
     @EventListener
     void publish(AbonneDTO abonneDTO) {
@@ -26,7 +29,13 @@ class AbonneEventListener {
                 .setAbonneEvent(abonneMapper.toAbonneEvent(abonneDTO))
                 .build();
 
-        kafkaTemplate.send(abonneDTO.id().toString(), abonneMessage)
+        final var producerRecord = new ProducerRecord<>(
+                abonneProperties.abonneTopic(),
+                abonneDTO.id().toString(),
+                abonneMessage
+        );
+
+        kafkaTemplate.send(producerRecord)
                 .whenComplete((result, throwable) -> {
                     if (nonNull(throwable)) {
                         log.error("Une erreur est survenue durant l'émission de l'abonné {}, \n Exception: {}", abonneDTO, throwable.getMessage());
@@ -34,8 +43,8 @@ class AbonneEventListener {
                         log.info("""
                                 L'abonné {} a bien été envoyé
                                 avec la clef {}
-                                sur le topic {} partition {}
-                                """, abonneDTO, result.getProducerRecord().key(), result.getProducerRecord().topic(), result.getProducerRecord().partition());
+                                sur le topic {}
+                                """, abonneMessage, result.getProducerRecord().key(), result.getProducerRecord().topic());
                     }
                 });
     }

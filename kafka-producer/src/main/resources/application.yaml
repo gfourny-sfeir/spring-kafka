@@ -1,8 +1,11 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: kafka
   kafka:
-    bootstrap-servers: localhost:29093
+    bootstrap-servers: localhost:29092
     template:
       observation-enabled: true
     producer:
@@ -13,8 +16,15 @@ spring:
         linger.ms: 20
         auto.register.schemas: false
         avro.remove.java.properties: true
-  docker:
-    compose:
-      file: ../compose.yaml
-server:
-  port: 8080
+    properties:
+      security:
+        protocol: PLAINTEXT
+      schema:
+        registry:
+          url: http://localhost:28081
+  threads:
+    virtual:
+      enabled: true
+
+abonne:
+  abonne-topic: abonne-event
