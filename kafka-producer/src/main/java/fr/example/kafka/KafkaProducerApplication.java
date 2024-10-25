@@ -8,10 +8,10 @@ import fr.example.kafka.abonne.config.AbonneProperties;
 
 @SpringBootApplication
 @EnableConfigurationProperties(AbonneProperties.class)
-public class KafkaApplication {
+public class KafkaProducerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(KafkaApplication.class, args);
+        SpringApplication.run(KafkaProducerApplication.class, args);
     }
 
 }
