@@ -13,5 +13,8 @@ spring:
         linger.ms: 20
         auto.register.schemas: false
         avro.remove.java.properties: true
+  docker:
+    compose:
+      file: ../compose.yaml
 server:
   port: 8080
