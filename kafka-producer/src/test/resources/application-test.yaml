@@ -1,6 +1,9 @@
 spring:
   kafka:
     bootstrap-servers: ${spring.embedded.kafka.brokers}
+    producer:
+      properties:
+        auto.register.schemas: true
     properties:
       security:
         protocol: PLAINTEXT

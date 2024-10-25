@@ -13,8 +13,8 @@ spring:
       compression-type: lz4
       properties:
         linger.ms: 20
-        auto.register.schemas: true
-        avro.remove.java.properties: false
+        auto.register.schemas: false
+        avro.remove.java.properties: true
   threads:
     virtual:
       enabled: true
