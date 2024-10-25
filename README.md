@@ -18,8 +18,9 @@ Il vous permettra aussi de configurer rapidement votre projet en vous appuyant s
 📖 Un premier "module", **schema**, contient une définition de schema AVRO: [README.md](schema/README.md)<br/>
 📤 Un second "module", **kafka-producer**, expose une API REST et permet de publier un message sur la plateforme Confluent Kafka 🙂: [README.md](kafka-producer/README.md)
 
-## ✍️ Travaux en cours
+## ✍️ Travaux à venir
 
 - Réalisation d'un consumer 📥
 - Réalisation d'une application Spring Kafka Streams entre le producer et le consumer 📬
+- Démonstration avec Testcontainers
 - Autres idées ❓
