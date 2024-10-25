@@ -1,8 +1,8 @@
-# schema
+# 📖 schema
 
 > Schema AVRO
 
-## Utilisation avec maven
+## 🛠️ Utilisation avec maven
 
 Lors de la modification du schéma avro, il est possible de générer les classes java au travers d'un profil maven, cela évite de les embarquer dans le jar en mode nominal.
 Pour générer les classes java, et ainsi observer le succès ou l'échec de vos modifications, exécuter la commande suivante:
@@ -11,7 +11,12 @@ Pour générer les classes java, et ainsi observer le succès ou l'échec de vos
 mvn clean package -Pbuild-java
 ````
 
-## Utilisation du schéma dans les µservices
+Avant de démarrer les applications, il faudra déployer le schema dans votre repo local:
+```shell
+mvn clean install
+```
+
+## 🦸🏻‍♂️ Utilisation du schéma dans les µservices
 
 Le zip peut être importé dans un projet maven en utilisant le plugin maven-dependency-plugin comme dans l'exemple suivant.<br/>
 

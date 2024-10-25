@@ -60,6 +60,7 @@ services:
       timeout: 10s
       retries: 10
 
+  # Permet de configurer un schema AVRO sur un topic
   init-schema-registry:
     container_name: init-schema-registry
     image: badouralix/curl-jq:latest
@@ -69,7 +70,7 @@ services:
     command: [ "sh", "/tmp/scripts/init-schema.sh" ]
     volumes:
       - ./kafka-producer/target/avro/schema.avsc:/tmp/schema.avsc
-      - ./kafka-producer/scripts/init-schema.sh:/tmp/scripts/init-schema.sh
+      - ./scripts/init-schema.sh:/tmp/scripts/init-schema.sh
     healthcheck:
       test: echo OK || exit 1
       start_period: 3s
