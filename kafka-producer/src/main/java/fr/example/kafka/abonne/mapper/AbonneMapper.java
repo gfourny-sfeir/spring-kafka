@@ -2,6 +2,7 @@ package fr.example.kafka.abonne.mapper;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
@@ -22,6 +23,6 @@ public interface AbonneMapper {
 
     @Named("mapToInstant")
     default Instant mapToInstant(LocalDateTime localDateTime) {
-        return isNull(localDateTime) ? Instant.now() : Instant.from(localDateTime);
+        return isNull(localDateTime) ? Instant.now() : localDateTime.toInstant(ZoneOffset.UTC);
     }
 }

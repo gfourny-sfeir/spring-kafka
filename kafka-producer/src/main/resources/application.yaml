@@ -3,9 +3,8 @@ server:
 
 spring:
   application:
-    name: kafka
+    name: kafka-producer
   kafka:
-    bootstrap-servers: localhost:29092
     template:
       observation-enabled: true
     producer:
@@ -14,17 +13,8 @@ spring:
       compression-type: lz4
       properties:
         linger.ms: 20
-        auto.register.schemas: false
-        avro.remove.java.properties: true
-    properties:
-      security:
-        protocol: PLAINTEXT
-      schema:
-        registry:
-          url: http://localhost:28081
+        auto.register.schemas: true
+        avro.remove.java.properties: false
   threads:
     virtual:
       enabled: true
-
-abonne:
-  abonne-topic: abonne-event
