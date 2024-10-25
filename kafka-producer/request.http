@@ -1,0 +1,11 @@
+### Emet la création d'un abonné
+POST http://localhost:8080/api/abonne
+Content-Type: application/json
+
+{
+  "id": "{{$random.uuid}}",
+  "nom": "{{$random.alphabetic(5)}}",
+  "prenom": "{{$random.alphabetic(5)}}",
+  "adresse": "{{$random.alphabetic(20)}}",
+  "statut": "INACTIF"
+}

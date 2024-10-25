@@ -1,0 +1,79 @@
+services:
+  # https://docs.confluent.io/platform/current/installation/docker/config-reference.html#cp-kafka-example
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    ports:
+      - "29092:29092"
+      - "29093:29093"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:29093'
+      KAFKA_JMX_PORT: 9101
+      KAFKA_JMX_HOSTNAME: localhost
+      KAFKA_PROCESS_ROLES: 'broker,controller'
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:29093'
+      KAFKA_LISTENERS: 'PLAINTEXT://kafka:29092,CONTROLLER://kafka:29093,PLAINTEXT_HOST://0.0.0.0:9092'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+      KAFKA_LOG_CLEANUP_POLICY: 'compact'
+    
+  ### Uniquement pour créer les topics Kafka.
+  init-kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - kafka
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: |
+      "
+      # blocks until kafka is reachable
+
+      echo -e 'Creating kafka topics'
+      kafka-topics --bootstrap-server kafka:29092 --create --if-not-exists --topic abonne-event --replication-factor 1 --partitions 1
+
+      echo -e 'Created kafka topics:'
+      kafka-topics --bootstrap-server kafka:29092 --list
+      "
+    environment:
+      # The following settings are listed here only to satisfy the image's requirements.
+      # We override the image's `command` anyways, hence this container will not start a broker.
+      KAFKA_BROKER_ID: ignored
+      KAFKA_ZOOKEEPER_CONNECT: ignored
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    hostname: schema-registry
+    depends_on:
+      - kafka
+    ports:
+      - "28081:28081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: "kafka:29092"
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:28081
+    healthcheck:
+      test: [ "CMD", "curl", "--output", "/dev/null", "--silent", "--head", "--fail", "http://localhost:28081/subjects" ]
+      start_period: 3s
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  # Permet de configurer un schema AVRO sur un topic
+  init-schema-registry:
+    container_name: init-schema-registry
+    image: badouralix/curl-jq:latest
+    depends_on:
+      schema-registry:
+        condition: service_healthy
+    command: [ "sh", "/tmp/scripts/init-schema.sh" ]
+    volumes:
+      - ./kafka-producer/target/avro/schema.avsc:/tmp/schema.avsc
+      - ./scripts/init-schema.sh:/tmp/scripts/init-schema.sh
+    healthcheck:
+      test: echo OK || exit 1
+      start_period: 3s
+      interval: 5s
+      timeout: 10s
+      retries: 3
