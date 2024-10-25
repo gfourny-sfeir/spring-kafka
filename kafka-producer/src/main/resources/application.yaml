@@ -1,5 +1,17 @@
 spring:
   application:
     name: kafka
+  kafka:
+    bootstrap-servers: localhost:29093
+    template:
+      observation-enabled: true
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      compression-type: lz4
+      properties:
+        linger.ms: 20
+        auto.register.schemas: false
+        avro.remove.java.properties: true
 server:
   port: 8080
