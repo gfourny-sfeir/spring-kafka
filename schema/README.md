@@ -37,7 +37,7 @@ Le zip peut être importé dans un projet maven en utilisant le plugin maven-dep
             <artifactItem>
               <groupId>fr.example.kafka</groupId>
               <artifactId>schema</artifactId>
-              <version>${rejeu-schema-version}</version>
+              <version>${schema-version}</version>
               <type>zip</type>
               <outputDirectory>${project.build.directory}/avro</outputDirectory>
               <overWrite>true</overWrite>
