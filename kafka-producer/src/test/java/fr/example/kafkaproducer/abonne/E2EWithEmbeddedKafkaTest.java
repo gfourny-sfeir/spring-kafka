@@ -1,4 +1,4 @@
-package fr.example.kafka.abonne;
+package fr.example.kafkaproducer.abonne;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -26,9 +26,9 @@ import org.springframework.kafka.test.utils.KafkaTestUtils;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.RestClient;
 
-import fr.example.kafka.abonne.config.EmbeddedConsumerConfig;
 import fr.example.kafka.schema.abonne.AbonneEvent;
 import fr.example.kafka.schema.abonne.AbonneMessage;
+import fr.example.kafkaproducer.abonne.config.EmbeddedConsumerConfig;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;

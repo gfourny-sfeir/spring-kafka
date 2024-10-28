@@ -1,4 +1,4 @@
-package fr.example.kafka.abonne;
+package fr.example.kafkaproducer.abonne;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

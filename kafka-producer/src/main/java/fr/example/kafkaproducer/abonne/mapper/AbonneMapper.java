@@ -1,4 +1,4 @@
-package fr.example.kafka.abonne.mapper;
+package fr.example.kafkaproducer.abonne.mapper;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -9,8 +9,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-import fr.example.kafka.abonne.AbonneDTO;
 import fr.example.kafka.schema.abonne.AbonneEvent;
+import fr.example.kafkaproducer.abonne.AbonneDTO;
 
 import static java.util.Objects.isNull;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;

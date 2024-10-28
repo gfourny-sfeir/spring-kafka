@@ -1,0 +1,12 @@
+spring:
+  kafka:
+    bootstrap-servers: ${spring.embedded.kafka.brokers}
+    properties:
+      security:
+        protocol: PLAINTEXT
+      schema:
+        registry:
+          url: mock://schema-registry-mocked
+
+abonne:
+  abonne-topic: abonne-event

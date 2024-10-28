@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>fr.example</groupId>
-	<artifactId>kafka-producer</artifactId>
+	<artifactId>kafka-consumer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>kafka-producer</name>
+	<name>kafka-consumer</name>
 	<description>Exemple Spring Kafka</description>
 	<url/>
 	<licenses>
@@ -52,6 +52,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
