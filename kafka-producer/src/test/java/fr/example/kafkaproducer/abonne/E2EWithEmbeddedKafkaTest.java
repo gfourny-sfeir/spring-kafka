@@ -34,6 +34,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.awaitility.Awaitility.await;
 
 @EmbeddedKafka(
+        kraft = true,
         topics = "${abonne.abonne-topic}",
         partitions = 1
 )
