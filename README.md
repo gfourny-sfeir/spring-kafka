@@ -16,8 +16,8 @@ Il vous permettra aussi de configurer rapidement votre projet en vous appuyant s
 ## 🍳 Composition du repository
 
 📖 Un premier "module", **schema**, contient une définition de schema AVRO: [README.md](schema/README.md)<br/>
-📤 Un second "module", **kafka-producer**, expose une API REST et permet de publier un message sur la plateforme Confluent Kafka 🙂: [README.md](kafka-producer/README.md)
-📥 Un troisième "module", **kafka-consumer**, permet de consommer les messages publiés par le **kafka-producer** : [README.md](kafka-consumer/README.md)
+📤 Un second "module", **kafka-producer**, expose une API REST et permet de publier un message sur la plateforme Confluent Kafka 🙂: [README.md](kafka-producer/README.md)<br/>
+📥 Un troisième "module", **kafka-consumer**, permet de consommer les messages publiés par le **kafka-producer** : [README.md](kafka-consumer/README.md)<br/>
 
 ## 🛣️ Diagramme de séquence
 ```mermaid
