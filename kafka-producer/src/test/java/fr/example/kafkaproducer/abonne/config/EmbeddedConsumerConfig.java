@@ -1,4 +1,4 @@
-package fr.example.kafka.abonne.config;
+package fr.example.kafkaproducer.abonne.config;
 
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

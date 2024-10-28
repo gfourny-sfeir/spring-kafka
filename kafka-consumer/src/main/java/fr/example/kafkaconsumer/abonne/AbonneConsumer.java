@@ -1,11 +1,11 @@
-package fr.example.kafka.abonne;
+package fr.example.kafkaconsumer.abonne;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
 
-import fr.example.kafka.abonne.mapper.AbonneMapper;
+import fr.example.kafkaconsumer.abonne.mapper.AbonneMapper;
 import fr.example.kafka.schema.abonne.AbonneMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

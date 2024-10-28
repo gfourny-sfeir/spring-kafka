@@ -1,4 +1,4 @@
-package fr.example.kafka.abonne.config;
+package fr.example.kafkaconsumer.abonne.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

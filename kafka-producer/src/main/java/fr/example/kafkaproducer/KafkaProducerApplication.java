@@ -1,19 +1,17 @@
-package fr.example.kafka;
+package fr.example.kafkaproducer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.kafka.annotation.EnableKafka;
 
-import fr.example.kafka.abonne.config.AbonneProperties;
+import fr.example.kafkaproducer.abonne.config.AbonneProperties;
 
 @SpringBootApplication
 @EnableConfigurationProperties(AbonneProperties.class)
-@EnableKafka
-public class KafkaConsumerApplication {
+public class KafkaProducerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(KafkaConsumerApplication.class, args);
+        SpringApplication.run(KafkaProducerApplication.class, args);
     }
 
 }

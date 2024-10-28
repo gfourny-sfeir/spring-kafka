@@ -1,13 +1,13 @@
-package fr.example.kafka.abonne;
+package fr.example.kafkaproducer.abonne;
 
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.context.event.EventListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import fr.example.kafka.abonne.config.AbonneProperties;
-import fr.example.kafka.abonne.mapper.AbonneMapper;
 import fr.example.kafka.schema.abonne.AbonneMessage;
+import fr.example.kafkaproducer.abonne.config.AbonneProperties;
+import fr.example.kafkaproducer.abonne.mapper.AbonneMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
